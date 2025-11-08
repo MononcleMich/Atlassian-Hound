@@ -4,7 +4,6 @@
   # AtlassianHound
 
   ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-  ![License](https://img.shields.io/badge/license-MIT-green)
   ![BloodHound](https://img.shields.io/badge/BloodHound-CE%20v8.2%2B-red)
 
   **BloodHound-ready Atlassian Cloud collector.**
@@ -260,13 +259,6 @@ AtlassianHound automatically tags high-value targets:
 ```bash
 pip install -r requirements.txt
 ```
-
----
-
-
-## License
-
-MIT License - see LICENSE file for details
 
 ---
 
