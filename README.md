@@ -35,24 +35,14 @@ git clone https://github.com/gboudreau-devo/AtlassianHound.git
 cd AtlassianHound
 pip install -r requirements.txt
 
-# 2. Configure credentials
-cp .env.template .env
-# Edit .env with your Atlassian API token
-
-# 3. Test authentication
+# 2. Test authentication
 python atlassian_hound.py --test-auth
 
-# 4. Run collection
+# 3. Run collection
 python atlassian_hound.py --output output/ --parallel
 
-# 5. Upload to BloodHound
-python houndpaint.py \
-  -s http://localhost:8080 \
-  --api-id YOUR_BLOODHOUND_TOKEN_ID \
-  --api-key YOUR_BLOODHOUND_TOKEN_KEY \
-  --auto-upload output/open_graph.json \
-  --register \
-  --post-ingest-fixups
+# 4. Upload to BloodHound
+python houndpaint.py -s http://localhost:8080 --api-id YOUR_BLOODHOUND_TOKEN_ID --api-key YOUR_BLOODHOUND_TOKEN_KEY --auto-upload output/open_graph.json --register --post-ingest-fixups
 ```
 
 ---
@@ -131,26 +121,25 @@ AtlassianHound requires different permission levels depending on what data you w
 
 ### Minimum Permissions (Confluence Only)
 - **Confluence User** with API token
-- ✅ Collects: Users, groups, Confluence spaces, space permissions, teams
-- ❌ Missing: Jira project permissions, project roles, security schemes, webhooks
+- Collects: Users, groups, Confluence spaces, space permissions, teams
 
 ### Recommended Permissions (Full Coverage)
 - **Jira Administrator** + **Confluence Administrator** with API token
-- ✅ Collects: Everything above PLUS Jira project roles, permission schemes, application roles, webhooks, security schemes
-- ✅ Provides: Complete attack graph with both Jira and Confluence privileges
+- Collects: Everything above PLUS Jira project roles, permission schemes, application roles, webhooks, security schemes
+- Provides: Complete attack graph with both Jira and Confluence privileges
 
 ### Organization Admin (Optional)
 - **Organization Administrator** role
-- ✅ Collects: Organization-level admin role assignments
+- Collects: Organization-level admin role assignments
 - Not required for most privilege analysis
 
 ### What Happens Without Admin Permissions?
 
 If you run AtlassianHound with a non-admin API token:
 
-- ✅ **Confluence permissions work 100%** - Full space admins, restrictions, group memberships
-- ❌ **Jira permissions missing** - No project role data, no permission schemes
-- ⚠️ **Queries return partial results** - Confluence-focused queries work, Jira queries return nothing
+- **Confluence permissions work 100%** - Full space admins, restrictions, group memberships
+- **Jira permissions missing** - No project role data, no permission schemes
+- **Queries return partial results** - Confluence-focused queries work, Jira queries return nothing
 
 **Example:**
 ```
@@ -258,18 +247,6 @@ AtlassianHound automatically tags high-value targets:
 - Groups with 50+ direct privilege edges
 - Groups with "security", "executive", "org-admin" keywords
 - Risk scores: LOW, MEDIUM, HIGH, CRITICAL
-
----
-
-## Known Limitations
-
-### Without Admin API Token
-
-- ❌ Jira project role memberships not collected (401/403 errors)
-- ❌ Jira permission schemes not visible
-- ❌ Security scheme assignments not collected
-- ❌ Webhook configurations not visible
-- ✅ Confluence data fully collected (spaces, permissions, restrictions)
 
 ---
 
