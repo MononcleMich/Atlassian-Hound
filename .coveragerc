@@ -1,0 +1,11 @@
+[run]
+omit =
+    */__init__.py
+    */tests/*
+    */site-packages/*
+    */output/*
+branch = True
+
+[report]
+show_missing = True
+skip_covered = True

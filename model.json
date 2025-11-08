@@ -1,0 +1,1096 @@
+{
+  "description": "AtlassianHound OpenGraph model for BloodHound CE. Defines Atlassian Cloud nodes, edges, and supporting metadata.",
+  "nodes": [
+    {
+      "kind": "CFUser",
+      "label": "Atlassian Cloud User",
+      "icon": "user",
+      "color": "#1976d2",
+      "displayProperty": "displayName",
+      "properties": {
+        "objectid": "string",
+        "accountId": "string",
+        "displayName": "string",
+        "emailAddress": "string",
+        "name": "string",
+        "active": "boolean"
+      },
+      "description": "An Atlassian Cloud user account. Can be a regular user, service account, or bot. Primary identity principal in Confluence and Jira."
+    },
+    {
+      "kind": "CFGroup",
+      "label": "Atlassian Group",
+      "icon": "users",
+      "color": "#8e24aa",
+      "displayProperty": "displayName",
+      "properties": {
+        "objectid": "string",
+        "groupId": "string",
+        "name": "string",
+        "displayName": "string"
+      },
+      "description": "An Atlassian organization-level group. Used for access control across Confluence and Jira. Can contain users and be nested."
+    },
+    {
+      "kind": "CFTeam",
+      "label": "Atlassian Team",
+      "icon": "users",
+      "color": "#00897b",
+      "displayProperty": "displayName",
+      "properties": {
+        "objectid": "string",
+        "teamId": "string",
+        "displayName": "string",
+        "description": "string",
+        "organizationId": "string",
+        "name": "string"
+      },
+      "description": "An Atlassian Team (distinct from Groups). Teams are organizational units that can have members and permissions."
+    },
+    {
+      "kind": "CFSpace",
+      "label": "Confluence Space",
+      "icon": "book",
+      "color": "#ffb300",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "id": "string",
+        "key": "string",
+        "name": "string",
+        "spaceType": "string"
+      },
+      "description": "A Confluence Space - a container for pages, blogposts, and attachments. Primary organizational unit in Confluence."
+    },
+    {
+      "kind": "JProject",
+      "label": "Jira Project",
+      "icon": "folder-open",
+      "color": "#3949ab",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "id": "string",
+        "key": "string",
+        "name": "string",
+        "projectType": "string"
+      },
+      "description": "A Jira Project - contains issues, workflows, and roles. Primary organizational unit in Jira."
+    },
+    {
+      "kind": "JIssue",
+      "label": "Jira Issue",
+      "icon": "circle-exclamation",
+      "color": "#d32f2f",
+      "displayProperty": "key",
+      "properties": {
+        "objectid": "string",
+        "id": "string",
+        "key": "string",
+        "summary": "string"
+      },
+      "description": "A Jira Issue (ticket, bug, story, etc.). Can be assigned to users and have security levels."
+    },
+    {
+      "kind": "AtlassianInstance",
+      "label": "Atlassian Cloud Instance",
+      "icon": "cloud",
+      "color": "#0052CC",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "name": "string",
+        "instanceUrl": "string",
+        "orgId": "string"
+      },
+      "description": "The root Atlassian Cloud organization instance. Contains all Confluence and Jira resources."
+    },
+    {
+      "kind": "JRole",
+      "label": "Jira Project Role",
+      "icon": "user-shield",
+      "color": "#fbc02d",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "projectId": "string",
+        "roleId": "string",
+        "name": "string"
+      },
+      "description": "A Jira Project Role - defines permissions within a specific Jira project. Users/groups can be assigned to roles."
+    },
+    {
+      "kind": "JPermission",
+      "label": "Jira Permission",
+      "icon": "key",
+      "color": "#7c4dff",
+      "displayProperty": "permission",
+      "properties": {
+        "objectid": "string",
+        "permission": "string",
+        "description": "string"
+      },
+      "description": "A specific Jira permission (e.g., BROWSE_PROJECTS, CREATE_ISSUES). Can be granted via roles or schemes."
+    },
+    {
+      "kind": "JGlobalPermission",
+      "label": "Jira Global Permission",
+      "icon": "shield-alt",
+      "color": "#5e35b1",
+      "displayProperty": "permission",
+      "properties": {
+        "objectid": "string",
+        "permission": "string",
+        "description": "string",
+        "scope": "string"
+      },
+      "description": "A Jira Global Permission - applies across all Jira projects (e.g., ADMINISTER_JIRA, CREATE_SHARED_OBJECTS)."
+    },
+    {
+      "kind": "CFGlobalPermission",
+      "label": "Confluence Global Permission",
+      "icon": "shield",
+      "color": "#00838f",
+      "displayProperty": "permission",
+      "properties": {
+        "objectid": "string",
+        "permission": "string",
+        "description": "string",
+        "scope": "string"
+      },
+      "description": "A Confluence Global Permission - applies across all Confluence spaces (e.g., CONFLUENCE_ADMIN, CREATE_SPACE)."
+    },
+    {
+      "kind": "OrgRole",
+      "label": "Organization Role",
+      "icon": "user-tie",
+      "color": "#6d4c41",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "roleId": "string",
+        "name": "string",
+        "description": "string"
+      },
+      "description": "An Organization-level role in Atlassian Cloud. Higher-level than project/space permissions."
+    },
+    {
+      "kind": "JApplicationRole",
+      "label": "Jira Application Role",
+      "icon": "layer-group",
+      "color": "#546e7a",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "roleKey": "string",
+        "name": "string",
+        "defaultGroups": "string[]",
+        "selectedByDefault": "boolean"
+      },
+      "description": "A Jira Application Role - determines which Jira applications a user can access (Core, Software, Service Management)."
+    },
+    {
+      "kind": "JServiceDesk",
+      "label": "Jira Service Desk",
+      "icon": "life-ring",
+      "color": "#ff7043",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "serviceDeskId": "string",
+        "name": "string",
+        "projectId": "string",
+        "projectKey": "string"
+      },
+      "description": "A Jira Service Management (Service Desk) project. Used for IT support and customer service workflows."
+    },
+    {
+      "kind": "CFPage",
+      "label": "Confluence Page",
+      "icon": "file-alt",
+      "color": "#26a69a",
+      "displayProperty": "title",
+      "properties": {
+        "objectid": "string",
+        "id": "string",
+        "title": "string",
+        "spaceKey": "string",
+        "type": "string"
+      },
+      "description": "A Confluence Page or Blogpost. Can have restrictions, attachments, and nested child pages."
+    },
+    {
+      "kind": "JiraInstance",
+      "label": "Jira Instance",
+      "icon": "server",
+      "color": "#0052CC",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "name": "string",
+        "url": "string"
+      },
+      "description": "A Jira product instance within the Atlassian Cloud organization."
+    },
+    {
+      "kind": "ConfluenceInstance",
+      "label": "Confluence Instance",
+      "icon": "server",
+      "color": "#00897b",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "name": "string"
+      },
+      "description": "A Confluence product instance within the Atlassian Cloud organization."
+    },
+    {
+      "kind": "Webhook",
+      "label": "Webhook",
+      "icon": "link",
+      "color": "#ff5722",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "webhookId": "string",
+        "name": "string",
+        "url": "string",
+        "events": "string[]",
+        "enabled": "boolean",
+        "scopeType": "string",
+        "scopeId": "string",
+        "isExternal": "boolean"
+      },
+      "description": "An outbound webhook for event notifications. Can point to external URLs (data exfiltration risk)."
+    },
+    {
+      "kind": "JSecurityScheme",
+      "label": "Jira Security Scheme",
+      "icon": "shield",
+      "color": "#e91e63",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "schemeId": "string",
+        "name": "string",
+        "description": "string",
+        "defaultLevelId": "string"
+      },
+      "description": "A Jira Issue Security Scheme - defines security levels for restricting issue visibility."
+    },
+    {
+      "kind": "JSecurityLevel",
+      "label": "Jira Security Level",
+      "icon": "shield-alt",
+      "color": "#f44336",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "levelId": "string",
+        "schemeId": "string",
+        "name": "string",
+        "description": "string",
+        "isDefault": "boolean",
+        "isHighValue": "boolean"
+      },
+      "description": "A Jira Issue Security Level - restricts who can view specific issues within a project."
+    },
+    {
+      "kind": "ThirdPartyApp",
+      "label": "Third-Party App",
+      "icon": "puzzle-piece",
+      "color": "#ff6f00",
+      "displayProperty": "name",
+      "properties": {
+        "objectid": "string",
+        "name": "string",
+        "app_key": "string",
+        "version": "string",
+        "enabled": "boolean",
+        "user_installed": "boolean",
+        "vendor": "string",
+        "vendor_url": "string",
+        "instance_type": "string",
+        "description": "string",
+        "license_type": "string",
+        "license_valid": "boolean",
+        "users_count": "number"
+      },
+      "description": "A third-party Atlassian Marketplace app installed on the instance. Can have extensive permissions."
+    }
+  ],
+  "edges": [
+    {
+      "name": "CFMemberOfGroup",
+      "label": "Member of Group",
+      "direction": "out",
+      "properties": {
+        "direct": "boolean",
+        "inherited": "boolean"
+      },
+      "kind": "CFMemberOfGroup",
+      "description": "User is a member of a Confluence/Atlassian group. Membership edge (direction: user → group)."
+    },
+    {
+      "name": "CFGroupHasMember",
+      "label": "Group Has Member",
+      "direction": "out",
+      "properties": {
+        "direct": "boolean",
+        "inherited": "boolean"
+      },
+      "kind": "CFGroupHasMember",
+      "description": "Group has a user as a member. Reverse membership edge (direction: group → user)."
+    },
+    {
+      "name": "MemberOf",
+      "label": "MemberOf (BloodHound)",
+      "direction": "out",
+      "properties": {
+        "direct": "boolean",
+        "inherited": "boolean"
+      },
+      "kind": "MemberOf",
+      "description": "BloodHound canonical membership edge. User is a member of a group."
+    },
+    {
+      "name": "MemberOfReverse",
+      "label": "MemberOf Reverse (BloodHound)",
+      "direction": "out",
+      "properties": {
+        "source": "string",
+        "from": "string"
+      },
+      "kind": "MemberOfReverse",
+      "description": "BloodHound canonical reverse membership edge. Mirror of MemberOf for bidirectional queries."
+    },
+    {
+      "name": "GroupHasMember",
+      "label": "GroupHasMember (BloodHound)",
+      "direction": "out",
+      "properties": {
+        "direct": "boolean",
+        "inherited": "boolean"
+      },
+      "kind": "GroupHasMember",
+      "description": "BloodHound canonical group membership edge. Group contains a user as a member."
+    },
+    {
+      "name": "CFMemberOfTeam",
+      "label": "Member of Team",
+      "direction": "out",
+      "properties": {},
+      "kind": "CFMemberOfTeam",
+      "description": "User is a member of an Atlassian Team. Teams are organizational units distinct from groups."
+    },
+    {
+      "name": "CFTeamHasMember",
+      "label": "Team Has Member",
+      "direction": "out",
+      "properties": {},
+      "kind": "CFTeamHasMember",
+      "description": "Team has a user as a member. Reverse team membership edge."
+    },
+    {
+      "name": "AppliesTo",
+      "label": "Applies To",
+      "direction": "out",
+      "properties": {
+        "scope": "string"
+      },
+      "kind": "AppliesTo",
+      "description": "Permission or role applies to a specific resource. Defines the scope of a permission grant."
+    },
+    {
+      "name": "CFHasPermission",
+      "label": "Has Cloud Permission",
+      "direction": "out",
+      "properties": {
+        "permissions": "string[]",
+        "inherited": "boolean"
+      },
+      "kind": "CFHasPermission",
+      "description": "Principal (user/group) has specific Confluence permissions on a space. Contains permissions array (cf_create_page, cf_delete_space, etc.)."
+    },
+    {
+      "name": "CFPermissionGrantedTo",
+      "label": "Permission Granted To",
+      "direction": "out",
+      "properties": {
+        "permissions": "string[]",
+        "inherited": "boolean"
+      },
+      "kind": "CFPermissionGrantedTo",
+      "description": "Permission is granted TO a principal. Reverse direction of CFHasPermission for permission analysis."
+    },
+    {
+      "name": "JHasGlobalPermission",
+      "label": "Has Jira Global Permission",
+      "direction": "out",
+      "properties": {},
+      "kind": "JHasGlobalPermission",
+      "description": "Principal has a Jira global permission (e.g., ADMINISTER_JIRA, BULK_CHANGE)."
+    },
+    {
+      "name": "CFHasGlobalPermission",
+      "label": "Has Confluence Global Permission",
+      "direction": "out",
+      "properties": {},
+      "kind": "CFHasGlobalPermission",
+      "description": "Principal has a Confluence global permission (e.g., CONFLUENCE_ADMIN, CREATE_SPACE)."
+    },
+    {
+      "name": "AdminTo",
+      "label": "AdminTo",
+      "direction": "out",
+      "properties": {
+        "inherited": "boolean"
+      },
+      "kind": "AdminTo",
+      "description": "BloodHound canonical admin edge. Principal has administrative rights over the target resource."
+    },
+    {
+      "name": "GenericWrite",
+      "label": "GenericWrite",
+      "direction": "out",
+      "properties": {
+        "inherited": "boolean"
+      },
+      "kind": "GenericWrite",
+      "description": "BloodHound canonical write edge. Principal has write/modify rights over the target resource."
+    },
+    {
+      "name": "JLeads",
+      "label": "Leads Project",
+      "direction": "out",
+      "properties": {},
+      "kind": "JLeads",
+      "description": "User is the lead/owner of a Jira project. Project leads have elevated permissions."
+    },
+    {
+      "name": "JRoleInProject",
+      "label": "Role In Project",
+      "direction": "out",
+      "properties": {},
+      "kind": "JRoleInProject",
+      "description": "Principal has a Jira role within a project. Roles define project-level permissions."
+    },
+    {
+      "name": "JAssignedToRole",
+      "label": "Assigned To Role",
+      "direction": "out",
+      "properties": {},
+      "kind": "JAssignedToRole",
+      "description": "User is assigned to a Jira project role. Grants role-based permissions."
+    },
+    {
+      "name": "JGroupAssignedToRole",
+      "label": "Group Assigned To Role",
+      "direction": "out",
+      "properties": {},
+      "kind": "JGroupAssignedToRole",
+      "description": "Group is assigned to a Jira project role. All group members inherit role permissions."
+    },
+    {
+      "name": "AssignedOrgRole",
+      "label": "Assigned Organization Role",
+      "direction": "out",
+      "properties": {},
+      "kind": "AssignedOrgRole",
+      "description": "Principal is assigned an organization-level role in Atlassian Cloud."
+    },
+    {
+      "name": "JHasPermission",
+      "label": "Has Jira Permission",
+      "direction": "out",
+      "properties": {},
+      "kind": "JHasPermission",
+      "description": "Principal has a specific Jira permission (e.g., CREATE_ISSUES, EDIT_ISSUES)."
+    },
+    {
+      "name": "JRoleHasPermission",
+      "label": "Role Has Permission",
+      "direction": "out",
+      "properties": {},
+      "kind": "JRoleHasPermission",
+      "description": "Jira role includes a specific permission. Principals assigned to this role inherit the permission."
+    },
+    {
+      "name": "HasProductAccess",
+      "label": "Has Product Access",
+      "direction": "out",
+      "properties": {
+        "source": "string"
+      },
+      "kind": "HasProductAccess",
+      "description": "Principal has access to a specific Atlassian product (Confluence, Jira, etc.)."
+    },
+    {
+      "name": "HasDefaultAccess",
+      "label": "Has Default Access",
+      "direction": "out",
+      "properties": {
+        "source": "string"
+      },
+      "kind": "HasDefaultAccess",
+      "description": "Principal has default access granted by product configuration."
+    },
+    {
+      "name": "JInProject",
+      "label": "Issue In Project",
+      "direction": "out",
+      "properties": {},
+      "kind": "JInProject",
+      "description": "Jira issue belongs to a specific project."
+    },
+    {
+      "name": "JAssignedTo",
+      "label": "Issue Assigned To",
+      "direction": "out",
+      "properties": {},
+      "kind": "JAssignedTo",
+      "description": "Jira issue is assigned to a user. Assignees can modify the issue."
+    },
+    {
+      "name": "JReported",
+      "label": "Issue Reported By",
+      "direction": "out",
+      "properties": {},
+      "kind": "JReported",
+      "description": "Jira issue was reported/created by a user. Reporters have visibility to the issue."
+    },
+    {
+      "name": "Contains",
+      "label": "Contains",
+      "direction": "out",
+      "properties": {},
+      "kind": "Contains",
+      "description": "Container relationship. Parent resource contains child resource (e.g., Space contains Pages)."
+    },
+    {
+      "name": "BackedByProject",
+      "label": "Service Desk Backed By Project",
+      "direction": "out",
+      "properties": {},
+      "kind": "BackedByProject",
+      "description": "Jira Service Desk is backed by a Jira project. Links service desk to underlying project."
+    },
+    {
+      "name": "JServiceDeskAgent",
+      "label": "Service Desk Agent",
+      "direction": "out",
+      "properties": {},
+      "kind": "JServiceDeskAgent",
+      "description": "User is an agent in a Jira Service Desk. Agents can view and respond to customer requests."
+    },
+    {
+      "name": "PageInSpace",
+      "label": "Page In Space",
+      "direction": "out",
+      "properties": {},
+      "kind": "PageInSpace",
+      "description": "Confluence page belongs to a specific space. Defines page location in hierarchy."
+    },
+    {
+      "name": "CFPageRestriction",
+      "label": "Page Restriction",
+      "direction": "out",
+      "properties": {
+        "permission": "string"
+      },
+      "kind": "CFPageRestriction",
+      "description": "Confluence page has view/edit restrictions. Limits who can access the page content."
+    },
+    {
+      "name": "CFTeamOwner",
+      "label": "Team Owner",
+      "direction": "out",
+      "properties": {},
+      "kind": "CFTeamOwner",
+      "description": "User is an owner of an Atlassian Team. Owners can manage team membership and permissions."
+    },
+    {
+      "name": "CFTeamManager",
+      "label": "Team Manager",
+      "direction": "out",
+      "properties": {},
+      "kind": "CFTeamManager",
+      "description": "User is a manager of an Atlassian Team. Managers can perform administrative tasks."
+    },
+    {
+      "name": "SameUser",
+      "label": "Same User Link",
+      "direction": "bidirectional",
+      "properties": {
+        "email": "string"
+      },
+      "kind": "SameUser",
+      "description": "Identity correlation edge. Links the same user across multiple platforms (Azure AD, GitHub, Atlassian) using email."
+    },
+    {
+      "name": "JWatched",
+      "label": "Watches Issue",
+      "direction": "out",
+      "properties": {},
+      "kind": "JWatched",
+      "description": "User is watching a Jira issue. Watchers receive notifications about issue updates."
+    },
+    {
+      "name": "CanManageWebhooks",
+      "label": "Can Manage Webhooks",
+      "direction": "out",
+      "properties": {
+        "permission": "string",
+        "high_value": "boolean",
+        "description": "string"
+      },
+      "kind": "CanManageWebhooks",
+      "description": "Principal can create/modify webhooks. High-value permission - enables data exfiltration and persistence."
+    },
+    {
+      "name": "RegisteredWebhook",
+      "label": "Registered Webhook",
+      "direction": "out",
+      "properties": {},
+      "kind": "RegisteredWebhook",
+      "description": "Webhook is registered for a specific scope (space, project, global)."
+    },
+    {
+      "name": "JHasSecurityLevel",
+      "label": "Has Security Level Access",
+      "direction": "out",
+      "properties": {
+        "level_name": "string",
+        "inherited": "boolean",
+        "via_group": "string",
+        "description": "string"
+      },
+      "kind": "JHasSecurityLevel",
+      "description": "Principal has access to a Jira security level. Security levels restrict issue visibility."
+    },
+    {
+      "name": "JSecurityLevelInScheme",
+      "label": "Security Level In Scheme",
+      "direction": "out",
+      "properties": {},
+      "kind": "JSecurityLevelInScheme",
+      "description": "Security level belongs to a security scheme. Schemes group related security levels."
+    },
+    {
+      "name": "CanManageSecurityScheme",
+      "label": "Can Manage Security Scheme",
+      "direction": "out",
+      "properties": {
+        "permission": "string",
+        "high_value": "boolean",
+        "description": "string"
+      },
+      "kind": "CanManageSecurityScheme",
+      "description": "Principal can modify Jira security schemes. High-value permission - enables access control bypass."
+    },
+    {
+      "name": "InstalledOn",
+      "label": "Installed On",
+      "direction": "out",
+      "properties": {
+        "enabled": "boolean",
+        "version": "string"
+      },
+      "kind": "InstalledOn",
+      "description": "Third-party app is installed on an Atlassian instance. Apps can have extensive permissions."
+    }
+  ],
+  "mirrors": {
+    "reverse_edges": {
+      "MemberOf": true
+    },
+    "CFHasPermission": [
+      {
+        "edge": "AdminTo",
+        "match": [
+          "administer",
+          "admin",
+          "manage"
+        ]
+      },
+      {
+        "edge": "GenericWrite",
+        "match": [
+          "edit",
+          "write",
+          "update"
+        ]
+      }
+    ]
+  },
+  "post_ingest_cypher": {
+    "mirror_edges": [],
+    "set_high_value": []
+  },
+  "visuals": {
+    "CFUser": {
+      "icon": "mdi:account",
+      "color": "#1E88E5"
+    },
+    "CFGroup": {
+      "icon": "mdi:account-group",
+      "color": "#8E24AA"
+    },
+    "CFTeam": {
+      "icon": "mdi:account-multiple",
+      "color": "#00897B"
+    },
+    "CFSpace": {
+      "icon": "mdi:book-open",
+      "color": "#FFB300"
+    },
+    "JProject": {
+      "icon": "mdi:folder-open",
+      "color": "#3949AB"
+    },
+    "JIssue": {
+      "icon": "mdi:alert-circle",
+      "color": "#D32F2F"
+    },
+    "AtlassianInstance": {
+      "icon": "mdi:cloud",
+      "color": "#0052CC"
+    }
+  },
+  "saved_queries": [
+    {
+      "name": "All Atlassian Admins",
+      "description": "Users or groups with AdminTo on any Jira or Confluence asset.",
+      "cypher": "MATCH p=(principal)-[:AdminTo]->(resource) RETURN p LIMIT 100",
+      "category": "Atlassian"
+    },
+    {
+      "name": "Users with Write/Edit Privileges",
+      "description": "Principals with GenericWrite on any Atlassian resource.",
+      "cypher": "MATCH p=(principal)-[:GenericWrite]->(resource) RETURN p LIMIT 100",
+      "category": "Atlassian"
+    },
+    {
+      "name": "Service Accounts Detected",
+      "description": "Accounts flagged as service accounts.",
+      "cypher": "MATCH p=(u:CFUser {service_account:true}) RETURN p LIMIT 100",
+      "category": "Atlassian"
+    },
+    {
+      "name": "High-Value Users",
+      "description": "Users with 10+ AdminTo/GenericWrite privileges or marked as high_value.",
+      "cypher": "MATCH (u:CFUser)-[r:AdminTo|GenericWrite]->(resource) WITH u, count(r) as priv_count WHERE priv_count >= 10 OR u.high_value = true MATCH p=(u)-[r2:AdminTo|GenericWrite]->(res) RETURN p LIMIT 100",
+      "category": "Atlassian"
+    },
+    {
+      "name": "Jira Project Owners",
+      "description": "Users who administer Jira projects.",
+      "cypher": "MATCH p=(u:CFUser)-[:AdminTo]->(proj:JProject) RETURN p LIMIT 100",
+      "category": "Atlassian"
+    },
+    {
+      "name": "Group to Project Privilege Map",
+      "description": "Groups and their privileges on Jira projects.",
+      "cypher": "MATCH p=(g:CFGroup)-[:AdminTo|GenericWrite]->(proj:JProject) RETURN p LIMIT 100",
+      "category": "Atlassian"
+    },
+    {
+      "name": "Confluence Space Admins",
+      "description": "Groups or users with AdminTo on Confluence Spaces.",
+      "cypher": "MATCH p=(n)-[:AdminTo]->(s:CFSpace) RETURN p LIMIT 100",
+      "category": "Atlassian"
+    },
+    {
+      "name": "Direct Memberships",
+      "description": "CFUser → CFGroup memberships.",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf]->(g:CFGroup) RETURN p LIMIT 100",
+      "category": "Atlassian"
+    },
+    {
+      "name": "Nested Team Membership",
+      "description": "CFUser → CFTeam recursive memberships.",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf*1..3]->(t:CFTeam) RETURN p LIMIT 25",
+      "category": "Atlassian"
+    },
+    {
+      "name": "Potential Escalation Paths (Atlassian → AD)",
+      "description": "Paths from Atlassian to AD Users via SameUser edges.",
+      "cypher": "MATCH p=(a:CFUser)-[:SameUser*1..2]->(u:User) RETURN p LIMIT 25",
+      "category": "Atlassian"
+    },
+    {
+      "name": "🚨 External Webhook Exfiltration Channels",
+      "description": "Find external webhooks and users who can manage them.",
+      "cypher": "MATCH (w:Webhook) WHERE w.isExternal = true WITH w MATCH p=(u:CFUser)-[:CanManageWebhooks]->(ji:JiraInstance) RETURN p, w LIMIT 25",
+      "category": "Offensive Security"
+    },
+    {
+      "name": "🔒 High-Value Users (Potential Escalation Targets)",
+      "description": "Find users marked as high-value who may have access to sensitive resources.",
+      "cypher": "MATCH (u:CFUser) WHERE u.high_value = true WITH u MATCH p=(u)-[:AdminTo|GenericWrite]->(resource) RETURN p LIMIT 50",
+      "category": "Offensive Security"
+    },
+    {
+      "name": "🎯 Shadow Admins via Group Membership",
+      "description": "Find users with AdminTo privileges inherited through group membership (often overlooked).",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf*1..3]->(g:CFGroup)-[:AdminTo]->(target) WHERE NOT (u)-[:AdminTo]->(target) RETURN p LIMIT 25",
+      "category": "Offensive Security"
+    },
+    {
+      "name": "🕵️ Service Desk Projects",
+      "description": "Service desk projects often contain sensitive tickets and customer data.",
+      "cypher": "MATCH (sd:JServiceDesk)-[:Contains]->(proj:JProject) WITH proj MATCH p=(u:CFUser)-[:AdminTo]->(proj) RETURN p LIMIT 50",
+      "category": "Offensive Security"
+    },
+    {
+      "name": "👥 Webhook Managers (Persistence Targets)",
+      "description": "Users who can create webhooks are high-value targets for establishing persistence.",
+      "cypher": "MATCH p=(u:CFUser)-[:CanManageWebhooks]->(ji:JiraInstance) WHERE u.high_value = true RETURN p LIMIT 50",
+      "category": "Offensive Security"
+    },
+    {
+      "name": "🔐 Global Admin Privilege Escalation Risks",
+      "description": "Global admins can modify security schemes and grant themselves access to any security level.",
+      "cypher": "MATCH (u:CFUser)-[:AdminTo]->(ji:JiraInstance) RETURN u.displayName AS User, u.emailAddress AS Email, u.high_value AS HighValue LIMIT 50",
+      "category": "Offensive Security"
+    },
+    {
+      "name": "📊 Confluence Pages with Restricted Access",
+      "description": "Find restricted Confluence pages and who can access them (potential sensitive data).",
+      "cypher": "MATCH p=(u:CFUser)-[r:CFPageRestriction]->(page:CFPage)-[:PageInSpace]->(s:CFSpace) RETURN p LIMIT 50",
+      "category": "Offensive Security"
+    },
+    {
+      "name": "🎭 Cross-Product Privilege Escalation Paths",
+      "description": "Find paths from low-privilege Confluence users to high-privilege Jira resources via group membership.",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf*1..3]->(g:CFGroup)-[:AdminTo]->(proj:JProject) WHERE NOT (u)-[:AdminTo]->(:JProject) RETURN p LIMIT 25",
+      "category": "Offensive Security"
+    },
+    {
+      "name": "🔍 Active Users on Projects",
+      "description": "Users with write access to projects can be targeted for phishing or social engineering.",
+      "cypher": "MATCH p=(u:CFUser)-[:GenericWrite|AdminTo]->(proj:JProject) RETURN p LIMIT 50",
+      "category": "Offensive Security"
+    },
+    {
+      "name": "🌐 Team Members (Organizational Intelligence)",
+      "description": "Team members can provide organizational intelligence and privilege escalation paths.",
+      "cypher": "MATCH p=(u:CFUser)-[:CFMemberOfTeam]->(t:CFTeam) RETURN p LIMIT 50",
+      "category": "Offensive Security"
+    },
+    {
+      "name": "🔍 Find User by Display Name",
+      "description": "EDIT: Change john to user name. Example: john, alice, bob",
+      "cypher": "MATCH p=(u:CFUser) WHERE u.displayName =~ '(?i).*john.*' RETURN p LIMIT 25",
+      "category": "Investigation"
+    },
+    {
+      "name": "🔍 Find User by Email",
+      "description": "EDIT: Change email. Example: john@example.com",
+      "cypher": "MATCH p=(u:CFUser) WHERE u.emailAddress =~ '(?i).*john@example.com.*' RETURN p LIMIT 25",
+      "category": "Investigation"
+    },
+    {
+      "name": "🔍 Find Group by Name",
+      "description": "EDIT: Change group name. Example: developers, administrators",
+      "cypher": "MATCH p=(g:CFGroup) WHERE g.name =~ '(?i).*developers.*' OR g.displayName =~ '(?i).*developers.*' RETURN p LIMIT 25",
+      "category": "Investigation"
+    },
+    {
+      "name": "📊 User's Group Memberships",
+      "description": "EDIT: Change john to user name. Shows all groups user belongs to.",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf*1..3]->(g) WHERE u.displayName =~ '(?i).*john.*' RETURN p",
+      "category": "Investigation"
+    },
+    {
+      "name": "📊 User's Direct Privileges",
+      "description": "EDIT: Change john to user name. Shows ONLY direct AdminTo/GenericWrite.",
+      "cypher": "MATCH p=(u:CFUser)-[:AdminTo|GenericWrite]->(resource) WHERE u.displayName =~ '(?i).*john.*' RETURN p LIMIT 100",
+      "category": "Investigation"
+    },
+    {
+      "name": "📊 User's Full Attack Surface",
+      "description": "EDIT: Change john to user name. Shows ALL privileges including inherited.",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf*0..3]->(g)-[:AdminTo|GenericWrite]->(resource) WHERE u.displayName =~ '(?i).*john.*' RETURN p LIMIT 100",
+      "category": "Investigation"
+    },
+    {
+      "name": "👥 Group's Members",
+      "description": "EDIT: Change developers to group name. Shows all users in group.",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf]->(g:CFGroup) WHERE g.name =~ '(?i).*developers.*' OR g.displayName =~ '(?i).*developers.*' RETURN p LIMIT 100",
+      "category": "Investigation"
+    },
+    {
+      "name": "👥 Group's Privileges",
+      "description": "EDIT: Change developers to group name. Shows resources group can admin/write.",
+      "cypher": "MATCH p=(g:CFGroup)-[:AdminTo|GenericWrite]->(resource) WHERE g.name =~ '(?i).*developers.*' OR g.displayName =~ '(?i).*developers.*' RETURN p LIMIT 100",
+      "category": "Investigation"
+    },
+    {
+      "name": "🎯 Who Can Admin This Space",
+      "description": "EDIT: Change engineering to space name. Shows all principals with AdminTo.",
+      "cypher": "MATCH p=(principal)-[:AdminTo]->(s:CFSpace) WHERE s.name =~ '(?i).*engineering.*' RETURN p LIMIT 100",
+      "category": "Investigation"
+    },
+    {
+      "name": "🎯 Who Can Admin This Project",
+      "description": "EDIT: Change DEVOPS to project name/key. Shows all principals with AdminTo.",
+      "cypher": "MATCH p=(principal)-[:AdminTo]->(proj:JProject) WHERE proj.name =~ '(?i).*devops.*' OR proj.key =~ '(?i).*DEVOPS.*' RETURN p LIMIT 100",
+      "category": "Investigation"
+    },
+    {
+      "name": "🔗 Shortest Path Between Two Users",
+      "description": "EDIT: Change alice and bob to user names. Finds shortest path.",
+      "cypher": "MATCH p=shortestPath((u1:CFUser)-[*]-(u2:CFUser)) WHERE u1.displayName =~ '(?i).*alice.*' AND u2.displayName =~ '(?i).*bob.*' RETURN p LIMIT 5",
+      "category": "Investigation"
+    },
+    {
+      "name": "🔗 All Paths from User to Resource",
+      "description": "EDIT: Change john (user) and hr-space (resource). Finds attack paths.",
+      "cypher": "MATCH p=(u:CFUser)-[*1..5]->(r) WHERE u.displayName =~ '(?i).*john.*' AND (r.name =~ '(?i).*hr-space.*' OR r.displayName =~ '(?i).*hr-space.*') RETURN p LIMIT 10",
+      "category": "Investigation"
+    },
+    {
+      "name": "🧩 All Third-Party Apps",
+      "description": "List all installed third-party apps/plugins across Jira and Confluence.",
+      "cypher": "MATCH p=(app:ThirdPartyApp) RETURN p LIMIT 100",
+      "category": "Third-Party Apps"
+    },
+    {
+      "name": "🧩 Enabled Third-Party Apps",
+      "description": "Show only enabled third-party apps that are currently active.",
+      "cypher": "MATCH p=(app:ThirdPartyApp) WHERE app.enabled = true RETURN p LIMIT 100",
+      "category": "Third-Party Apps"
+    },
+    {
+      "name": "🧩 User-Installed Apps",
+      "description": "Show apps that were manually installed by users (not system defaults).",
+      "cypher": "MATCH p=(app:ThirdPartyApp) WHERE app.user_installed = true RETURN p LIMIT 100",
+      "category": "Third-Party Apps"
+    },
+    {
+      "name": "🧩 Apps by Vendor",
+      "description": "Find all apps from a specific vendor (replace 'VENDOR' with vendor name).",
+      "cypher": "MATCH p=(app:ThirdPartyApp) WHERE app.vendor =~ '(?i).*VENDOR.*' RETURN p LIMIT 100",
+      "category": "Third-Party Apps"
+    },
+    {
+      "name": "🧩 Jira Third-Party Apps",
+      "description": "Show all third-party apps installed on Jira instance.",
+      "cypher": "MATCH p=(app:ThirdPartyApp)-[:InstalledOn]->(i:JiraInstance) RETURN p LIMIT 100",
+      "category": "Third-Party Apps"
+    },
+    {
+      "name": "🧩 Confluence Third-Party Apps",
+      "description": "Show all third-party apps installed on Confluence instance.",
+      "cypher": "MATCH p=(app:ThirdPartyApp)-[:InstalledOn]->(i:ConfluenceInstance) RETURN p LIMIT 100",
+      "category": "Third-Party Apps"
+    },
+    {
+      "name": "🎯 All Attack Paths (AdminTo/GenericWrite)",
+      "description": "Show all privilege escalation paths (AdminTo and GenericWrite edges).",
+      "cypher": "MATCH p=()-[r:AdminTo|GenericWrite]->() RETURN p LIMIT 100",
+      "category": "Attack Paths"
+    },
+    {
+      "name": "🎯 User Attack Paths to Resources",
+      "description": "Show attack paths from users through groups to resources (up to 3 hops).",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf*0..2]->(g)-[r:AdminTo|GenericWrite]->(resource) RETURN p LIMIT 100",
+      "category": "Attack Paths"
+    },
+    {
+      "name": "🎯 High-Value Principals with Most Privileges",
+      "description": "Find users/groups with the most AdminTo or GenericWrite edges.",
+      "cypher": "MATCH (principal)-[r:AdminTo|GenericWrite]->(resource) WITH principal, count(r) as privilege_count WHERE privilege_count > 5 RETURN principal, privilege_count ORDER BY privilege_count DESC LIMIT 50",
+      "category": "Attack Paths"
+    },
+    {
+      "name": "🎯 All Relationships Graph View",
+      "description": "Visualize all relationships between Atlassian resources.",
+      "cypher": "MATCH p=(n)-[r]->(m) WHERE n.objectid IS NOT NULL AND m.objectid IS NOT NULL RETURN p LIMIT 100",
+      "category": "Attack Paths"
+    },
+    {
+      "name": "RISK: High-Value Groups",
+      "description": "Shows all groups marked as high-value targets (admins, security, etc.)",
+      "cypher": "MATCH p=(g:CFGroup {high_value:true}) RETURN p LIMIT 50",
+      "category": "Risk Analysis"
+    },
+    {
+      "name": "RISK: Critical Risk Groups",
+      "description": "Shows groups with CRITICAL risk scores (risk_level = CRITICAL)",
+      "cypher": "MATCH p=(g:CFGroup) WHERE g.risk_level = 'CRITICAL' RETURN p LIMIT 50",
+      "category": "Risk Analysis"
+    },
+    {
+      "name": "RISK: Users in High-Value Groups",
+      "description": "Find all users who are members of high-value/admin groups",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf]->(g:CFGroup {high_value:true}) RETURN p LIMIT 100",
+      "category": "Risk Analysis"
+    },
+    {
+      "name": "RISK: Over-Privileged Users",
+      "description": "Users with access to 10+ spaces through group memberships",
+      "cypher": "MATCH (u:CFUser)-[:MemberOf]->(g:CFGroup)-[:AdminTo|GenericWrite]->(s:CFSpace) WITH u, count(DISTINCT s) as space_count WHERE space_count >= 10 MATCH p=(u)-[:MemberOf]->(g)-[:AdminTo|GenericWrite]->(s) RETURN p LIMIT 100",
+      "category": "Risk Analysis"
+    },
+    {
+      "name": "RISK: Groups with Excessive Privileges",
+      "description": "Groups that have AdminTo privileges on 20+ spaces/projects",
+      "cypher": "MATCH (g:CFGroup)-[:AdminTo]->(resource) WITH g, count(resource) as priv_count WHERE priv_count >= 20 MATCH p=(g)-[:AdminTo]->(resource) RETURN p LIMIT 100",
+      "category": "Risk Analysis"
+    },
+    {
+      "name": "RISK: External User Access",
+      "description": "Users with non-common email domains who have space/project access (manually review domains)",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf*1..2]->(g)-[:AdminTo|GenericWrite]->(resource) WHERE u.emailAddress IS NOT NULL RETURN p LIMIT 100",
+      "category": "Risk Analysis"
+    },
+    {
+      "name": "RISK: Inactive Users with Privileges",
+      "description": "Inactive users who still have group memberships (potential stale accounts)",
+      "cypher": "MATCH p=(u:CFUser {active:false})-[:MemberOf]->(g:CFGroup) RETURN p LIMIT 100",
+      "category": "Risk Analysis"
+    },
+    {
+      "name": "RISK: Single Points of Failure",
+      "description": "Critical spaces with only 1 admin group/user",
+      "cypher": "MATCH (s:CFSpace)<-[:AdminTo]-(admin) WITH s, count(DISTINCT admin) as admin_count WHERE admin_count = 1 MATCH p=(admin)-[:AdminTo]->(s) RETURN p LIMIT 50",
+      "category": "Risk Analysis"
+    },
+    {
+      "name": "RISK: Users with Direct Privileges",
+      "description": "Users with direct AdminTo/GenericWrite (bypassing group model)",
+      "cypher": "MATCH p=(u:CFUser)-[:AdminTo|GenericWrite]->(resource) RETURN p LIMIT 100",
+      "category": "Risk Analysis"
+    },
+    {
+      "name": "RISK: Privilege Escalation Paths",
+      "description": "Find paths from regular users to high-value groups (2-4 hops)",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf*2..4]->(g:CFGroup {high_value:true}) WHERE NOT u.displayName =~ '(?i).*(admin|service|bot).*' RETURN p LIMIT 50",
+      "category": "Risk Analysis"
+    },
+    {
+      "name": "ATTACK: Confluence Space Takeover",
+      "description": "Users who can become space admins through group membership chains",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf*1..3]->(g:CFGroup)-[:AdminTo]->(s:CFSpace) RETURN p LIMIT 100",
+      "category": "Attack Paths"
+    },
+    {
+      "name": "ATTACK: Jira Project Takeover",
+      "description": "Users who can admin Jira projects through their group memberships",
+      "cypher": "MATCH p=(u:CFUser)-[:MemberOf*1..3]->(g:CFGroup)-[:AdminTo]->(proj:JProject) RETURN p LIMIT 100",
+      "category": "Attack Paths"
+    },
+    {
+      "name": "ATTACK: Third-Party App Abuse",
+      "description": "Shows which apps have access to your Jira/Confluence instances",
+      "cypher": "MATCH p=(app:ThirdPartyApp)-[:InstalledOn]->(instance) WHERE app.enabled = true RETURN p LIMIT 100",
+      "category": "Attack Paths"
+    }
+  ],
+  "environment": {
+    "root_kind": "AtlassianInstance",
+    "name_property": "name"
+  }
+}

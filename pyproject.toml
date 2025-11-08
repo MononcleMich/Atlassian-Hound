@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "atlassianhound"
+version = "1.0.5"
+description = "Production-ready BloodHound collector for Atlassian Cloud with parallel execution, compression, and advanced analytics."
+authors = [{ name = "AtlassianHound Contributors" }]
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["atlassian", "bloodhound", "security", "opengraph", "jira", "confluence", "redteam", "pentest", "attack-graph"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: System Administrators",
+  "Topic :: Security",
+  "Topic :: System :: Systems Administration",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "bhopengraph>=1.1.0",
+  "requests>=2.31.0",
+  "python-dotenv>=1.0.0",
+  "jsonschema>=4.19.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "coverage",
+  "ruff",
+  "black",
+  "pre-commit",
+]
+
+[project.scripts]
+atlassian-hound = "atlassian_hound:main"
+
+[tool.setuptools]
+packages = ["collectors", "utils"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

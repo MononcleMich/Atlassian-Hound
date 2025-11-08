@@ -1,0 +1,20 @@
+# Core dependencies
+bhopengraph>=1.0.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+jsonschema>=4.19.0
+
+# Optional / CLI & configuration helpers
+tomli>=2.0.1; python_version < "3.11"  # only needed for Python <3.11
+PyYAML>=6.0
+
+# Testing & development
+pytest>=7.4.0
+pytest-mock>=3.10.0
+black>=23.9.0
+ruff>=0.1.0
+mypy>=1.5.0
+types-requests>=2.31.0.2
+
+# Lint & coverage (optional for CI)
+coverage>=7.3.0
