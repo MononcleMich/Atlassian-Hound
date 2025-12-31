@@ -4,48 +4,8 @@
 *.pem
 *.key
 
-# Python cache and build
-__pycache__/
-*.pyc
-*.pyo
-*.egg-info/
-dist/
-build/
-.eggs/
-
-# Testing and coverage
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-
-# IDE and editors
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
 # Output and temporary files
 output/
-*.json.gz
-api_raw_output.json
-*.log
-*.tmp
-
-# Example directories (keep structure)
-examples/
-
-# Claude Code IDE configuration
-.claude/ 
-
-CHANGELOG.md
-
-docs/
-
-model.json.backup
-
-queries/
 
 .pre-commit-config.yaml
 
