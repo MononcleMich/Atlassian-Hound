@@ -14,11 +14,7 @@ Features:
 Compatible with BloodHound CE v8.2+ and Enterprise v5.x.
 
 Usage:
-  python houndpaint.py -s http://localhost:8080 \
-    --api-id <TOKEN_ID> --api-key <TOKEN_KEY> \
-    --auto-upload open_graph.json \
-    --register \
-    --analytics-summary
+  python houndpaint.py -s http://localhost:8080 --api-id <TOKEN_ID> --api-key <TOKEN_KEY> --auto-upload open_graph.json --register --analytics-summary
 """
 
 from __future__ import annotations
@@ -128,7 +124,6 @@ def build_custom_types(model: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
         # Check if explicit searchable properties are declared
         declared_searchable = node_def.get("searchableProperties")
         if isinstance(declared_searchable, (list, tuple)):
-            # User explicitly declared searchable properties - validate they're strings
             searchable = [str(prop) for prop in declared_searchable if isinstance(prop, str)]
         else:
             # Auto-detect: only include string/text properties from schema
@@ -141,7 +136,6 @@ def build_custom_types(model: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
         if display_property and display_property not in searchable:
             searchable.append(display_property)
 
-        # Fallback to "name" if nothing is searchable
         if not searchable:
             searchable = ["name"]
 
@@ -355,12 +349,12 @@ def reset_all_kinds(server: str, api_id: str, api_key: str) -> None:
 
     Useful for getting a clean slate before registering new kinds.
     """
-    print_info("🔄 Resetting ALL existing custom node kinds...")
+    print_info("Resetting ALL existing custom node kinds...")
 
     existing_kinds = get_existing_kinds(server, api_id, api_key)
 
     if not existing_kinds:
-        print_info("ℹ️  No existing custom node kinds found to reset")
+        print_info("No existing custom node kinds found to reset")
         return
 
     print_info(f"Found {len(existing_kinds)} kinds to reset: {existing_kinds}")
@@ -368,7 +362,7 @@ def reset_all_kinds(server: str, api_id: str, api_key: str) -> None:
     deleted_count = 0
     for kind in existing_kinds:
         if delete_kind(server, api_id, api_key, kind):
-            print_success(f"🗑️  Deleted custom node kind: {kind}")
+            print_success(f"Deleted custom node kind: {kind}")
             deleted_count += 1
 
     print_info(f"Reset complete: {deleted_count}/{len(existing_kinds)} kinds deleted")
@@ -531,7 +525,7 @@ def health_check(server: str, api_id: str, api_key: str) -> None:
 
 def auto_upload(server: str, api_id: str, api_key: str, path: str) -> None:
     """Upload an OpenGraph JSON export directly into BloodHound."""
-    print_subheader("📤 Uploading OpenGraph Data")
+    print_subheader("Uploading OpenGraph Data")
 
     graph_path = pathlib.Path(path)
     if not graph_path.is_file():
@@ -591,7 +585,7 @@ def register_custom_nodes(
     model: dict,
 ) -> None:
     """Register custom node kinds using visuals from model.json."""
-    print_subheader("🎨 Registering Custom Node Types")
+    print_subheader("Registering Custom Node Types")
 
     custom_types = build_custom_types(model)
     if not custom_types:
@@ -764,7 +758,7 @@ def run_cypher_query(server: str, api_id: str, api_key: str, query: str, name: s
 
 def run_post_ingest_fixups(server: str, api_id: str, api_key: str, model: dict) -> None:
     """Iterate over post-ingest Cypher fix-ups defined in model.json."""
-    print_subheader("🔧 Running Post-Ingest Fix-Ups")
+    print_subheader("Running Post-Ingest Fix-Ups")
 
     edition = detect_edition(server, api_id, api_key)
     print_info(f"Connected to BloodHound {edition} Edition")
