@@ -86,30 +86,13 @@ python atlassian_hound.py --parallel --max-workers 5
 
 ```bash
 # Register node types and queries in BloodHound
-python houndpaint.py \
-  -s http://localhost:8080 \
-  --api-id YOUR_TOKEN_ID \
-  --api-key YOUR_TOKEN_KEY \
-  --model model.json \
-  --register
+python houndpaint.py -s http://localhost:8080 --api-id YOUR_TOKEN_ID --api-key YOUR_TOKEN_KEY --model model.json --register
 
 # Upload data with automatic node type registration
-python houndpaint.py \
-  -s http://localhost:8080 \
-  --api-id YOUR_TOKEN_ID \
-  --api-key YOUR_TOKEN_KEY \
-  --auto-upload output/open_graph.json \
-  --register \
-  --post-ingest-fixups
+python houndpaint.py -s http://localhost:8080 --api-id YOUR_TOKEN_ID --api-key YOUR_TOKEN_KEY --auto-upload output/open_graph.json --register --post-ingest-fixups
 
 # Reset all custom node types and re-register
-python houndpaint.py \
-  -s http://localhost:8080 \
-  --api-id YOUR_TOKEN_ID \
-  --api-key YOUR_TOKEN_KEY \
-  --model model.json \
-  --reset \
-  --register
+python houndpaint.py -s http://localhost:8080 --api-id YOUR_TOKEN_ID --api-key YOUR_TOKEN_KEY --model model.json --reset --register
 ```
 
 ---
@@ -157,46 +140,46 @@ To get full coverage, create an API token from a user with **Jira Administrator*
 
 ## Pre-Built Queries
 
-AtlassianHound includes **55+ ready-to-use queries** organized into categories:
+AtlassianHound includes ready-to-use queries organized into categories:
 
-### Risk Analysis (10 queries)
+### Risk Analysis
 - High-Value Users/Groups - Find privileged accounts
 - Over-Privileged Users - Users with 10+ space access
 - External User Access - Non-internal domains with privileges
 - Inactive Users with Privileges - Stale accounts
 - Single Points of Failure - Critical resources with 1 admin
 
-### Attack Paths (12 queries)
+### Attack Paths
 - Shadow Admins via Group Membership - Hidden privilege escalation
 - Confluence/Jira Takeover Paths - User → Group → AdminTo chains
 - Third-Party App Abuse - Enabled apps on instances
 - Webhook Managers - Persistence opportunities
 - Cross-Product Privilege Escalation - Confluence → Jira paths
 
-### Investigation (13 queries)
+### Investigation
 - Find User/Group by Name - Search principals
 - User's Full Attack Surface - All direct + inherited privileges
 - Who Can Admin This Space/Project - Resource permission audit
 - Shortest Path Between Users - Relationship analysis
 - All Paths from User to Resource - Custom attack path search
 
-### Third-Party Apps (6 queries)
+### Third-Party Apps
 - All/Enabled Third-Party Apps - Installed plugins
 - User-Installed Apps - Non-default apps
 - Apps by Vendor - Filter by vendor name
 - Jira/Confluence Apps - Product-specific apps
 
-### Offensive Security (10 queries)
+### Offensive Security
 - External Webhook Exfiltration Channels - Data exfiltration risks
 - Service Desk Projects - Sensitive customer data access
 - Global Admin Privilege Escalation - Instance-level admins
 - Restricted Confluence Pages - Sensitive document access
 
-All queries are pre-loaded into BloodHound after running `houndpaint.py --register`. Access them via the **Saved Queries** panel in BloodHound UI.
+All queries are pre-loaded into BloodHound after running `houndpaint.py --register`. Access them via the Saved Queries panel in BloodHound UI.
 
 ---
 
-## 📊 Data Model
+## Data Model
 
 ### Node Types
 
@@ -215,7 +198,7 @@ All queries are pre-loaded into BloodHound after running `houndpaint.py --regist
 - **JSecurityScheme** - Jira security schemes
 - **AtlassianInstance** - Organization root node
 
-### Relationship Types (16 edges)
+### Relationship Types
 
 **Membership Edges:**
 - **MemberOf** - User → Group membership
@@ -245,20 +228,7 @@ AtlassianHound automatically tags high-value targets:
 - Groups with "admin" in the name
 - Groups with 50+ direct privilege edges
 - Groups with "security", "executive", "org-admin" keywords
-- Risk scores: LOW, MEDIUM, HIGH, CRITICAL
-
----
-
-## Requirements
-
-- Python 3.10+
-- BloodHound CE v8.2+
-- Atlassian Cloud instance
-- API token with appropriate permissions
-
-```bash
-pip install -r requirements.txt
-```
+- Risk scores
 
 ---
 
@@ -274,7 +244,3 @@ This tool is for authorized security testing and defensive security operations o
 - [BloodHound Documentation](https://bloodhound.specterops.io/home)
 - [Atlassian Cloud API Documentation](https://developer.atlassian.com/cloud/)
 - [OpenGraph Format Specification](https://github.com/SpecterOps/BloodHound/blob/main/packages/go/dawgs/docs/OpenGraph.md)
-
----
-
-**Built with ☕ for the security community**
